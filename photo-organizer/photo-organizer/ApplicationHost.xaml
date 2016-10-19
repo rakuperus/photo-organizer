@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="photo_organizer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:photo_organizer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="HamburgerMenuItem" x:DataType="toolkit:HamburgerMenuGlyphItem">
+            <Grid Width="240" Height="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <FontIcon Grid.Column="0" 
+                          Margin="12,12,11,12" 
+                          FontFamily="Segoe MDL2 Assets" 
+                          Glyph="{Binding Glyph}" 
+                          Foreground="White" />
+                <TextBlock Grid.Column="1" 
+                           Text="{x:Bind Label}" 
+                           Foreground="White" 
+                           FontSize="16" 
+                           VerticalAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    
+    <toolkit:HamburgerMenu>
+        <toolkit:HamburgerMenu.ItemsSource>
+            <toolkit:HamburgerMenuItemCollection>
+                <toolkit:HamburgerMenuGlyphItem Label="About" Glyph="x" />
+            </toolkit:HamburgerMenuItemCollection>
+        </toolkit:HamburgerMenu.ItemsSource>
+        <toolkit:HamburgerMenu.OptionsItemsSource>
+            <toolkit:HamburgerMenuItemCollection>
+                <toolkit:HamburgerMenuGlyphItem Label="About" Glyph="x" />
+            </toolkit:HamburgerMenuItemCollection>
+        </toolkit:HamburgerMenu.OptionsItemsSource>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        </Grid>
+    </toolkit:HamburgerMenu>
+</Page>
