@@ -27,21 +27,65 @@
                            VerticalAlignment="Center" />
             </Grid>
         </DataTemplate>
+
+        <DataTemplate x:Key="HamburgerMenuImageItem" x:DataType="toolkit:HamburgerMenuGlyphItem">
+            <Grid Width="240" Height="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding Glyph}" Stretch="UniformToFill" Margin="12,12,11,12" />
+                <TextBlock Grid.Column="1" 
+                           Text="{x:Bind Label}" 
+                           Foreground="White" 
+                           FontSize="16" 
+                           VerticalAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+
+        <x:String x:Key="MenuConfiguration">Configuration</x:String>
+        <x:String x:Key="MenuMetaData">MetaData</x:String>
+        <x:String x:Key="AboutMessage">Simple photo folder organization app</x:String>
     </Page.Resources>
-    
-    <toolkit:HamburgerMenu>
+
+    <toolkit:HamburgerMenu 
+                PaneBackground="Black" x:Name="HamburgerMenu"
+                Foreground="White"
+                ItemTemplate="{StaticResource HamburgerMenuItem }"
+                OptionsItemTemplate="{StaticResource HamburgerMenuItem }"
+                ItemClick="HamburgerMenu_OnItemClick"
+                OptionsItemClick="HamburgerMenu_OnOptionsItemClick"
+                OpenPaneLength="240"
+                DisplayMode="CompactInline"
+                CompactPaneLength="48"
+                HamburgerHeight="48"
+                IsPaneOpen="False"
+        >
         <toolkit:HamburgerMenu.ItemsSource>
             <toolkit:HamburgerMenuItemCollection>
-                <toolkit:HamburgerMenuGlyphItem Label="About" Glyph="x" />
+                <toolkit:HamburgerMenuGlyphItem Label="{ StaticResource MenuConfiguration }" Glyph="&#xE12D;" TargetPageType="local:Organize" />
+                <toolkit:HamburgerMenuGlyphItem Label="{ StaticResource MenuMetaData }" Glyph="&#xE128;" TargetPageType="local:MetaData" />
             </toolkit:HamburgerMenuItemCollection>
         </toolkit:HamburgerMenu.ItemsSource>
         <toolkit:HamburgerMenu.OptionsItemsSource>
             <toolkit:HamburgerMenuItemCollection>
-                <toolkit:HamburgerMenuGlyphItem Label="About" Glyph="x" />
+                <toolkit:HamburgerMenuGlyphItem Label="About" Glyph="&#xE11B;" />
             </toolkit:HamburgerMenuItemCollection>
         </toolkit:HamburgerMenu.OptionsItemsSource>
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border Background="Black" Grid.Row="0">
+                <TextBlock x:Name="Header" Text="Organize"
+                            Margin="20,0,0,0"
+                            FontSize="18" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" FontWeight="Bold"/>
+            </Border>
+            <Frame Grid.Row="1" x:Name="RootFrame" SourcePageType="local:Organize"/>
         </Grid>
     </toolkit:HamburgerMenu>
 </Page>

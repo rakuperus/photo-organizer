@@ -98,6 +98,17 @@
     <Compile Include="ApplicationHost.xaml.cs">
       <DependentUpon>ApplicationHost.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MetaData.xaml.cs">
+      <DependentUpon>MetaData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\OrganizerConfiguration.cs" />
+    <Compile Include="Model\PhotoMover.cs" />
+    <Compile Include="Organize.xaml.cs">
+      <DependentUpon>Organize.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Progress.xaml.cs">
+      <DependentUpon>Progress.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +135,18 @@
     <Page Include="ApplicationHost.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MetaData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Organize.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Progress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
