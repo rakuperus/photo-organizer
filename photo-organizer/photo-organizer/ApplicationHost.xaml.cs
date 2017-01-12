@@ -20,9 +20,9 @@ namespace photo_organizer
     /// <summary>
     /// This is the application host page, it is responsible for the main navigation and the main conten frame
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class ApplicationHost : Page
     {
-        public MainPage()
+        public ApplicationHost()
         {
             this.InitializeComponent();
             this.Loaded += MainPage_Loaded;

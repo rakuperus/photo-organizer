@@ -101,13 +101,13 @@
     <Compile Include="MetaData.xaml.cs">
       <DependentUpon>MetaData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\OrganizerConfiguration.cs" />
+    <Compile Include="Model\Configuration.cs" />
     <Compile Include="Model\PhotoMover.cs" />
-    <Compile Include="Organize.xaml.cs">
-      <DependentUpon>Organize.xaml</DependentUpon>
+    <Compile Include="ConfigureOrganize.xaml.cs">
+      <DependentUpon>ConfigureOrganize.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Progress.xaml.cs">
-      <DependentUpon>Progress.xaml</DependentUpon>
+    <Compile Include="OrganizeProgress.xaml.cs">
+      <DependentUpon>OrganizeProgress.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -140,11 +140,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Organize.xaml">
+    <Page Include="ConfigureOrganize.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Progress.xaml">
+    <Page Include="OrganizeProgress.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

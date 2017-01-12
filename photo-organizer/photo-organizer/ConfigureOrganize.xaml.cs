@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -21,74 +22,71 @@ using Windows.UI.Xaml.Navigation;
 
 namespace photo_organizer
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class Organize : Page, INotifyPropertyChanged
+    public sealed partial class ConfigureOrganize : Page, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private Model.Configuration configurationSettings = new Model.Configuration();
 
         public string SourceFolder { get; set; }
         public string DestinationFolder { get; set; }
         public bool? MoveFiles { get; set; } = false;
 
-        public Organize()
+        public ConfigureOrganize()
         {
             this.InitializeComponent();
         }
 
-        private async Task<string> SelectImageFolder(string pickerTitle)
+        private async Task<StorageFolder> SelectImageFolder(string pickerTitle)
         {
             FolderPicker picker = new FolderPicker();
             picker.ViewMode = PickerViewMode.Thumbnail;
             picker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
-            picker.CommitButtonText = "Set source location";
+            picker.CommitButtonText = pickerTitle;
             picker.FileTypeFilter.Add(".jpg");
 
-            var folder = await picker.PickSingleFolderAsync();
-            if (null != folder)
-            {
-                return folder.Path;
-            }
-
-            return null;
+            return await picker.PickSingleFolderAsync();
         }
 
         private async void SelectSource_Click(object sender, RoutedEventArgs e)
         {
-            SourceFolder = await SelectImageFolder("Set source location");
+            configurationSettings.SourceFolder = await SelectImageFolder("Select source location");
+
+            SourceFolder = (null != configurationSettings.SourceFolder) ? configurationSettings.SourceFolder.Path : string.Empty;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SourceFolder"));
         }
 
         private async void SelectDestination_Click(object sender, RoutedEventArgs e)
         {
-            DestinationFolder = await SelectImageFolder("Set destination location");
+            configurationSettings.DestinationFolder = await SelectImageFolder("Select destination location");
+
+            DestinationFolder = (null != configurationSettings.DestinationFolder) ? configurationSettings.DestinationFolder.Path : string.Empty;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DestinationFolder"));
         }
 
         private async void Go_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(SourceFolder))
+            if (null == configurationSettings.SourceFolder)
             {
                 await new MessageDialog("Select a source folder").ShowAsync();
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(DestinationFolder))
+            if (null == configurationSettings.DestinationFolder)
             {
                 await new MessageDialog("Select a detination folder").ShowAsync();
                 return;
             }
 
-            if (string.Compare(SourceFolder, DestinationFolder) == 0)
+            if (configurationSettings.SourceFolder == configurationSettings.DestinationFolder)
             {
                 await new MessageDialog("Source and destination cannot be the same").ShowAsync();
                 return;
             }
 
-            MoveFiles = MoveFiles == null ? false : (bool)MoveFiles;
+            configurationSettings.MoveFilesToDestination = (MoveFiles == null) ? false : (bool)MoveFiles;
 
-            this.Frame.Navigate(typeof(Progress));
+            this.Frame.Navigate(typeof(OrganizeProgress), configurationSettings);
         }
     }
 }

@@ -1,0 +1,56 @@
+﻿<Page
+    x:Class="photo_organizer.OrganizeProgress"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:photo_organizer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Image Margin="24" Source="Assets/Square150x150Logo.png"/>
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <ProgressBar 
+                Margin="4,0,4,0" 
+                HorizontalAlignment="Stretch" 
+                Height="10.6" 
+                Maximum="50"
+                Value="20"/>
+            <RelativePanel Margin="4,0,4,0">
+                <!--
+                <TextBlock RelativePanel.AlignLeftWithPanel="true">0:00</TextBlock>
+                -->
+                <TextBlock Foreground="Black" RelativePanel.AlignHorizontalCenterWithPanel="True">Photo's/sec</TextBlock>
+                <TextBlock Foreground="Black" RelativePanel.AlignRightWithPanel="true">Total time</TextBlock>
+            </RelativePanel>
+            <TextBlock Foreground="Black" FontSize="24" HorizontalAlignment="Center">Current file name</TextBlock>
+            <TextBlock Foreground="Black" FontSize="18" HorizontalAlignment="Center">Current folder name</TextBlock>
+            <RelativePanel>
+                <Button 
+                    Margin="8"
+                    RelativePanel.AlignHorizontalCenterWithPanel="true" 
+                    x:Name="PauzeButton">
+                    <TextBlock FontSize="20" FontFamily="Segoe MDL2 Assets">&#xE769;</TextBlock>
+                </Button>
+                <!--
+                <Button 
+                    Margin="8"
+                    RelativePanel.LeftOf="PauzeButton"
+                    x:Name="StartButton">
+                    <TextBlock FontFamily="Segoe MDL2 Assets">&#xE768;</TextBlock>
+                </Button>
+                -->
+                <Button 
+                    Margin="8"
+                    RelativePanel.RightOf="PauzeButton"
+                    x:Name="RestartButton">
+                    <TextBlock FontSize="20" FontFamily="Segoe MDL2 Assets">&#xE777;</TextBlock>
+                </Button>
+            </RelativePanel>
+        </StackPanel>
+    </Grid>
+</Page>

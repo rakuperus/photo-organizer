@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="photo_organizer.MainPage"
+    x:Class="photo_organizer.ApplicationHost"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:photo_organizer"
@@ -43,7 +43,7 @@
             </Grid>
         </DataTemplate>
 
-        <x:String x:Key="MenuConfiguration">Configuration</x:String>
+        <x:String x:Key="MenuConfiguration">Organize</x:String>
         <x:String x:Key="MenuMetaData">MetaData</x:String>
         <x:String x:Key="AboutMessage">Simple photo folder organization app</x:String>
     </Page.Resources>
@@ -63,7 +63,7 @@
         >
         <toolkit:HamburgerMenu.ItemsSource>
             <toolkit:HamburgerMenuItemCollection>
-                <toolkit:HamburgerMenuGlyphItem Label="{ StaticResource MenuConfiguration }" Glyph="&#xE12D;" TargetPageType="local:Organize" />
+                <toolkit:HamburgerMenuGlyphItem Label="{ StaticResource MenuConfiguration }" Glyph="&#xE12D;" TargetPageType="local:ConfigureOrganize" />
                 <toolkit:HamburgerMenuGlyphItem Label="{ StaticResource MenuMetaData }" Glyph="&#xE128;" TargetPageType="local:MetaData" />
             </toolkit:HamburgerMenuItemCollection>
         </toolkit:HamburgerMenu.ItemsSource>
@@ -85,7 +85,7 @@
                             HorizontalAlignment="Left" 
                             VerticalAlignment="Center" FontWeight="Bold"/>
             </Border>
-            <Frame Grid.Row="1" x:Name="RootFrame" SourcePageType="local:Organize"/>
+            <Frame Grid.Row="1" x:Name="RootFrame" SourcePageType="local:ConfigureOrganize"/>
         </Grid>
     </toolkit:HamburgerMenu>
 </Page>
